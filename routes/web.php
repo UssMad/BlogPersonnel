@@ -4,18 +4,17 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Blog Public (visiteurs et connectés)
+Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
+Route::resource('articles', ArticleController::class)->only(['show']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::resource('articles', ArticleController::class);
-
+// Espace d'administration (connectés uniquement)
 Route::middleware('auth')->group(function () {
-    Route::resource('articles', ArticleController::class);
+    // Tableau de bord
+    Route::get('/dashboard', [ArticleController::class, 'dashboard'])->name('dashboard');
+    
+    // CRUD des articles
+    Route::resource('articles', ArticleController::class)->except(['index', 'show']);
 });
 
 require __DIR__.'/auth.php';
