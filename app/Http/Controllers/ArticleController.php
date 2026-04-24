@@ -9,9 +9,7 @@ use App\Models\Article;
 
 class ArticleController extends Controller
 {
-    /**
-     * US1 & US3 : Liste des articles publics avec filtrage et pagination.
-     */
+
     public function index(Request $request)
     {
         $query = Article::with('category')->where('status', 'published')->latest();
@@ -20,34 +18,28 @@ class ArticleController extends Controller
             $query->where('category_id', $request->category_id);
         }
 
-        // Bonus: Pagination 6
+        
         $articles = $query->paginate(6);
         $categories = Category::all();
 
         return view('articles.index', compact('articles', 'categories'));
     }
 
-    /**
-     * US5 : Tableau de bord privé (tous les articles).
-     */
+    
     public function dashboard()
     {
         $articles = Article::with('category')->latest()->get();
         return view('dashboard', compact('articles'));
     }
 
-    /**
-     * US6 : Afficher le formulaire de création.
-     */
+    
     public function create()
     {
         $categories = Category::all();
         return view('articles.create', compact('categories'));
     }
 
-    /**
-     * US6 : Enregistrer un nouvel article.
-     */
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -68,9 +60,7 @@ class ArticleController extends Controller
         return redirect()->route('dashboard')->with('success', 'Article créé avec succès.');
     }
 
-    /**
-     * US2 : Afficher un article spécifique.
-     */
+    
     public function show(Article $article)
     {
         // Si l'article n'est pas publié, seul l'admin connecté peut le voir
@@ -81,18 +71,14 @@ class ArticleController extends Controller
         return view('articles.show', compact('article'));
     }
 
-    /**
-     * US7 : Afficher le formulaire d'édition.
-     */
+    
     public function edit(Article $article)
     {
         $categories = Category::all();
         return view('articles.edit', compact('article', 'categories'));
     }
 
-    /**
-     * US7 : Mettre à jour l'article.
-     */
+    
     public function update(Request $request, Article $article)
     {
         $validated = $request->validate([
@@ -114,9 +100,6 @@ class ArticleController extends Controller
         return redirect()->route('dashboard')->with('success', 'Article mis à jour avec succès.');
     }
 
-    /**
-     * US8 : Supprimer l'article.
-     */
     public function destroy(Article $article)
     {
         $article->delete();
