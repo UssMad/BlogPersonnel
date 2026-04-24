@@ -2,7 +2,7 @@
 
 DevCraft is a high-end, bespoke editorial platform built specifically for technical freelancers and senior software engineers. Designed with a meticulous "Modern Developer" aesthetic, it prioritizes typography, deep colors, and an ambient reading experience to showcase deep-dive technical prose, architectural musings, and pragmatic code snippets.
 
-![DevCraft Banner](https://raw.githubusercontent.com/username/devcraft/main/public/banner.png) <!-- Update with actual banner link -->
+![DevCraft Banner](https://raw.githubusercontent.com/username/devcraft/main/public/banner.png) 
 
 ## ✨ Features
 
