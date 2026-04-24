@@ -31,9 +31,9 @@
         {{-- Profile Header --}}
         <div class="mb-8">
             <div class="flex items-center gap-3 mb-6 px-3">
-                <div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden flex-shrink-0 flex items-center justify-center text-emerald-500">
-                    <span class="material-symbols-outlined">person</span>
-                </div>
+                <a href="{{ route('articles.index') }}" class="group block flex-shrink-0">
+                    <img src="{{ asset('images/logo.png') }}" alt="DevCraft Logo" class="w-10 h-10 object-contain transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+                </a>
                 <div class="overflow-hidden">
                     <span class="text-lg font-bold text-nav-brand truncate block">Admin Panel</span>
                     <span class="text-emerald-500 font-ui-label text-ui-label truncate block">{{ Auth::user()->name }}</span>

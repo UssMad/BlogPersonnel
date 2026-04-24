@@ -4,8 +4,43 @@
 
 @section('content')
 
+{{-- Custom Animations for Dashboard --}}
+<style>
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatButton {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-4px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0; /* Starts hidden before animation kicks in */
+    }
+    
+    .animate-float:hover {
+        animation: floatButton 2s ease-in-out infinite;
+    }
+    
+    /* Staggered row animation */
+    .stagger-row { opacity: 0; animation: fadeInUp 0.5s ease-out forwards; }
+    .stagger-row:nth-child(1) { animation-delay: 0.1s; }
+    .stagger-row:nth-child(2) { animation-delay: 0.2s; }
+    .stagger-row:nth-child(3) { animation-delay: 0.3s; }
+    .stagger-row:nth-child(4) { animation-delay: 0.4s; }
+    .stagger-row:nth-child(5) { animation-delay: 0.5s; }
+    .stagger-row:nth-child(6) { animation-delay: 0.6s; }
+    .stagger-row:nth-child(7) { animation-delay: 0.7s; }
+    .stagger-row:nth-child(8) { animation-delay: 0.8s; }
+    .stagger-row:nth-child(9) { animation-delay: 0.9s; }
+    .stagger-row:nth-child(10) { animation-delay: 1.0s; }
+</style>
+
 {{-- Page Header --}}
-<header class="flex justify-between items-end mb-16">
+<header class="flex justify-between items-end mb-16 animate-fade-in-up" style="animation-delay: 0s;">
     <div>
         <h1 class="font-h1 text-h1 text-on-surface">Articles Directory</h1>
         <p class="font-body-md text-body-md text-on-surface-variant mt-3 max-w-2xl">
@@ -13,14 +48,14 @@
         </p>
     </div>
     <a href="{{ route('articles.create') }}"
-       class="bg-emerald-500 text-white px-6 py-3 rounded-lg font-ui-label text-ui-label flex items-center gap-2 shadow-sm hover:bg-emerald-600 transition-colors h-fit whitespace-nowrap">
+       class="animate-float bg-emerald-500 text-white px-6 py-3 rounded-lg font-ui-label text-ui-label flex items-center gap-2 shadow-sm hover:bg-emerald-600 transition-all hover:shadow-emerald-500/25 hover:shadow-lg h-fit whitespace-nowrap">
         <span class="material-symbols-outlined text-[18px]">edit_document</span>
         Create New Article
     </a>
 </header>
 
 {{-- Data Table Container --}}
-<div class="bg-surface-container-low rounded-xl border border-outline-variant/30 overflow-hidden ambient-shadow">
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/30 overflow-hidden ambient-shadow animate-fade-in-up" style="animation-delay: 0.2s;">
     <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
             <thead>
@@ -33,12 +68,12 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-outline-variant/20">
-                @forelse($articles as $article)
-                    <tr class="hover:bg-surface-container-highest/30 transition-colors group">
+                @forelse($articles as $index => $article)
+                    <tr class="hover:bg-surface-container-highest/30 transition-colors group stagger-row">
                         {{-- Title & Excerpt --}}
                         <td class="py-3 px-6">
                             <a href="{{ route('articles.show', $article) }}" class="block">
-                                <div class="font-h3 text-on-surface text-[20px] mb-1 group-hover:text-emerald-400 transition-colors">
+                                <div class="font-h3 text-on-surface text-[20px] mb-1 group-hover:text-emerald-500 transition-colors">
                                     {{ $article->title }}
                                 </div>
                                 <div class="font-body-md text-on-surface-variant text-[15px]">
@@ -49,8 +84,8 @@
 
                         {{-- Category --}}
                         <td class="py-3 px-6 align-top pt-6">
-                            <span class="inline-flex bg-emerald-500/10 text-emerald-400 rounded-full px-3 py-1 font-ui-label text-ui-label items-center gap-1">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            <span class="inline-flex bg-emerald-500/10 text-emerald-500 rounded-full px-3 py-1 font-ui-label text-ui-label items-center gap-1 transition-transform group-hover:scale-105">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                                 #{{ $article->category->name }}
                             </span>
                         </td>
@@ -78,7 +113,7 @@
                             <div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
                                 {{-- Edit --}}
                                 <a href="{{ route('articles.edit', $article) }}"
-                                   class="text-on-surface-variant hover:text-emerald-400 transition-colors p-1 rounded hover:bg-surface-container-highest"
+                                   class="text-on-surface-variant hover:text-emerald-500 transition-all duration-300 p-1 rounded hover:bg-surface-container-highest hover:-translate-y-1"
                                    title="Edit">
                                     <span class="material-symbols-outlined text-[20px]">edit</span>
                                 </a>
@@ -89,7 +124,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                            class="text-on-surface-variant hover:text-red-400 transition-colors p-1 rounded hover:bg-red-500/10"
+                                            class="text-on-surface-variant hover:text-red-500 transition-all duration-300 p-1 rounded hover:bg-red-500/10 hover:-translate-y-1"
                                             title="Delete">
                                         <span class="material-symbols-outlined text-[20px]">delete</span>
                                     </button>
@@ -99,7 +134,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="py-20 text-center">
+                        <td colspan="5" class="py-20 text-center animate-fade-in-up">
                             <span class="material-symbols-outlined text-[48px] text-outline mb-4 block">article</span>
                             <p class="font-body-lg text-body-lg text-on-surface-variant">No articles yet. Create your first one!</p>
                             <a href="{{ route('articles.create') }}"

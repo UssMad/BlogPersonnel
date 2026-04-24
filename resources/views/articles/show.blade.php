@@ -3,7 +3,67 @@
 @section('title', $article->title . ' – DevCraft')
 
 @section('content')
-<div class="flex-grow flex flex-col items-center w-full max-w-[1120px] mx-auto px-4 md:px-6 py-12">
+<style>
+    /* Moving background effects */
+    .bg-orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(100px);
+        z-index: -1;
+        opacity: 0.3;
+        animation: float 20s infinite ease-in-out;
+        pointer-events: none;
+    }
+    
+    .bg-orb-1 {
+        top: -10%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.6) 0%, rgba(16, 185, 129, 0) 70%);
+    }
+    
+    .bg-orb-2 {
+        bottom: -20%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0) 70%);
+        animation-delay: -5s;
+        animation-duration: 25s;
+    }
+
+    .bg-orb-3 {
+        top: 30%;
+        left: 50%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(139, 92, 246, 0) 70%);
+        animation-delay: -10s;
+        animation-duration: 22s;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translate(0, 0) scale(1);
+        }
+        33% {
+            transform: translate(80px, -80px) scale(1.2);
+        }
+        66% {
+            transform: translate(-40px, 60px) scale(0.8);
+        }
+    }
+</style>
+
+{{-- Background Effects --}}
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+</div>
+
+<div class="flex-grow flex flex-col items-center w-full max-w-[1120px] mx-auto px-4 md:px-6 py-12 relative z-10">
 
     {{-- ═══════════════════════════════════════════════════ --}}
     {{-- ARTICLE HEADER --}}

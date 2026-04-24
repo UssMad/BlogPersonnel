@@ -30,7 +30,10 @@
     <header class="bg-nav-bg/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-nav-border shadow-sm">
         <div class="flex justify-between items-center h-16 px-8 max-w-[1120px] mx-auto">
             {{-- Brand --}}
-            <a class="text-xl font-black text-nav-brand tracking-tighter" href="{{ route('articles.index') }}">DevCraft</a>
+            <a class="flex items-center gap-3 group" href="{{ route('articles.index') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="DevCraft Logo" class="h-8 w-8 object-contain transition-transform duration-500 group-hover:rotate-12">
+                <span class="text-xl font-black text-nav-brand tracking-tighter group-hover:text-emerald-500 transition-colors">DevCraft</span>
+            </a>
 
             {{-- Navigation --}}
             <nav class="hidden md:flex items-center space-x-6">
