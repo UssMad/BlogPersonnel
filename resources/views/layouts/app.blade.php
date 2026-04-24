@@ -24,6 +24,13 @@
 
 <body class="bg-background text-on-background min-h-screen flex flex-col antialiased transition-colors duration-300">
 
+    {{-- Background Effects --}}
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
     {{-- ═══════════════════════════════════════════════════ --}}
     {{-- PUBLIC TOP NAVBAR --}}
     {{-- ═══════════════════════════════════════════════════ --}}

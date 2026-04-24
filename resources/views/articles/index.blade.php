@@ -26,65 +26,7 @@
     .stagger-card:nth-child(6) { animation-delay: 0.6s; }
     .stagger-card:nth-child(7) { animation-delay: 0.7s; }
     .stagger-card:nth-child(8) { animation-delay: 0.8s; }
-
-    /* Moving background effects */
-    .bg-orb {
-        position: fixed;
-        border-radius: 50%;
-        filter: blur(100px);
-        z-index: -1;
-        opacity: 0.3;
-        animation: float 20s infinite ease-in-out;
-        pointer-events: none;
-    }
-    
-    .bg-orb-1 {
-        top: -10%;
-        left: -10%;
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.6) 0%, rgba(16, 185, 129, 0) 70%);
-    }
-    
-    .bg-orb-2 {
-        bottom: -20%;
-        right: -10%;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0) 70%);
-        animation-delay: -5s;
-        animation-duration: 25s;
-    }
-
-    .bg-orb-3 {
-        top: 30%;
-        left: 50%;
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(139, 92, 246, 0) 70%);
-        animation-delay: -10s;
-        animation-duration: 22s;
-    }
-
-    @keyframes float {
-        0%, 100% {
-            transform: translate(0, 0) scale(1);
-        }
-        33% {
-            transform: translate(80px, -80px) scale(1.2);
-        }
-        66% {
-            transform: translate(-40px, 60px) scale(0.8);
-        }
-    }
 </style>
-
-{{-- Background Effects --}}
-<div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
-</div>
 
 <div class="w-full max-w-[1120px] mx-auto px-6 pt-16 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
 
