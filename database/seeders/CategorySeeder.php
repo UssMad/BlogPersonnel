@@ -13,11 +13,17 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::insert([
-            ['name' => 'Laravel'],
-            ['name' => 'PHP'],
-            ['name' => 'DevOps'],
-            ['name' => 'JavaScript'],
-        ]);
+        $categories = [
+            'Architecture',
+            'TypeScript',
+            'Laravel',
+            'React',
+            'DevOps',
+            'Career',
+        ];
+
+        foreach ($categories as $name) {
+            Category::firstOrCreate(['name' => $name]);
+        }
     }
 }

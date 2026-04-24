@@ -1,18 +1,19 @@
 @extends('layouts.admin')
 
-@section('title', 'Create New Article – DevCraft Admin')
+@section('title', 'Edit: ' . $article->title . ' – DevCraft Admin')
 
 @section('content')
 
-<form method="POST" action="{{ route('articles.store') }}" class="flex flex-col h-full">
+<form method="POST" action="{{ route('articles.update', $article) }}" class="flex flex-col h-full">
     @csrf
+    @method('PUT')
 
     {{-- Editor Header / Action Bar --}}
     <header class="sticky top-0 z-40 bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant rounded-xl px-8 py-5 flex justify-between items-center shadow-[0_4px_30px_rgba(0,0,0,0.1)] mb-10">
         <div class="flex items-center gap-3 font-ui-label text-ui-label text-on-surface-variant">
             <a href="{{ route('dashboard') }}" class="hover:text-emerald-400 transition-colors">Articles</a>
             <span class="material-symbols-outlined text-[16px]">chevron_right</span>
-            <span class="text-on-surface font-semibold">Drafting New Post</span>
+            <span class="text-on-surface font-semibold">Editing Article</span>
         </div>
         <div class="flex items-center gap-6">
             {{-- Status Toggle --}}
@@ -20,17 +21,22 @@
                 <span class="font-ui-label text-ui-label text-on-surface-variant">Status:</span>
                 <select name="status"
                         class="bg-surface-container border border-outline-variant text-on-surface font-ui-label text-ui-label rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 block p-2 outline-none cursor-pointer">
-                    <option value="draft" {{ old('status') === 'published' ? '' : 'selected' }}>Draft</option>
-                    <option value="published" {{ old('status') === 'published' ? 'selected' : '' }}>Published</option>
+                    <option value="draft" {{ old('status', $article->status) === 'draft' ? 'selected' : '' }}>Draft</option>
+                    <option value="published" {{ old('status', $article->status) === 'published' ? 'selected' : '' }}>Published</option>
                 </select>
             </div>
 
             <div class="w-px h-6 bg-outline-variant"></div>
 
-            {{-- Submit Button --}}
+            {{-- Actions --}}
+            <a href="{{ route('articles.show', $article) }}"
+               class="px-6 py-[10px] rounded-lg text-on-surface border border-outline-variant bg-surface hover:bg-surface-container-high transition-colors font-ui-label text-ui-label flex items-center gap-2 shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                Preview
+            </a>
             <button type="submit"
                     class="px-6 py-[10px] rounded-lg bg-emerald-500 text-white hover:bg-emerald-600 transition-colors font-ui-label text-ui-label shadow-sm font-semibold">
-                Save Article
+                Update Article
             </button>
         </div>
     </header>
@@ -53,7 +59,7 @@
         <div class="flex flex-col gap-3">
             <input type="text"
                    name="title"
-                   value="{{ old('title') }}"
+                   value="{{ old('title', $article->title) }}"
                    class="w-full bg-transparent border-none font-h1 text-[36px] font-extrabold leading-tight tracking-tight text-on-surface placeholder:text-on-surface-variant/50 focus:ring-0 p-0 focus:outline-none"
                    placeholder="Enter article title..."
                    required>
@@ -70,9 +76,9 @@
                 <select name="category_id"
                         class="w-full bg-surface-container border border-outline-variant text-on-surface font-ui-label text-ui-label rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 block p-3 outline-none"
                         required>
-                    <option value="" disabled {{ old('category_id') ? '' : 'selected' }}>Select a category...</option>
+                    <option value="" disabled>Select a category...</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                        <option value="{{ $category->id }}" {{ old('category_id', $article->category_id) == $category->id ? 'selected' : '' }}>
                             {{ $category->name }}
                         </option>
                     @endforeach
@@ -86,7 +92,7 @@
                     Estimated Reading Time
                 </label>
                 <p class="font-body-md text-body-md text-on-surface-variant" id="reading-time-display">
-                    Start writing to see estimate...
+                    {{ $article->reading_time }}
                 </p>
             </div>
         </div>
@@ -104,7 +110,7 @@
                       id="content-editor"
                       class="w-full flex-1 bg-transparent border-none p-8 font-body-md text-body-md text-on-surface placeholder:text-outline focus:ring-0 focus:outline-none resize-none min-h-[500px] leading-relaxed"
                       placeholder="Start documenting your ideas..."
-                      required>{{ old('content') }}</textarea>
+                      required>{{ old('content', $article->content) }}</textarea>
         </div>
     </div>
 </form>

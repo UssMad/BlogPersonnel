@@ -1,3 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Grotesk:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    /* ════════════════════════════════════════════════════════
+       LIGHT MODE (default)
+       ════════════════════════════════════════════════════════ */
+    :root {
+        --c-background: 248 250 252;
+        --c-surface: 248 250 252;
+        --c-surface-dim: 226 232 240;
+        --c-surface-bright: 255 255 255;
+        --c-surface-container-lowest: 255 255 255;
+        --c-surface-container-low: 241 245 249;
+        --c-surface-container: 248 250 252;
+        --c-surface-container-high: 226 232 240;
+        --c-surface-container-highest: 203 213 225;
+        --c-on-surface: 15 23 42;
+        --c-on-surface-variant: 71 85 105;
+        --c-on-background: 15 23 42;
+        --c-outline: 148 163 184;
+        --c-outline-variant: 226 232 240;
+        --c-primary: 59 79 116;
+        --c-on-primary: 255 255 255;
+        --c-primary-container: 218 226 253;
+        --c-on-primary-container: 19 27 46;
+        --c-primary-fixed: 218 226 253;
+        --c-primary-fixed-dim: 59 79 116;
+        --c-on-primary-fixed: 19 27 46;
+        --c-on-primary-fixed-variant: 63 70 92;
+        --c-inverse-primary: 190 198 224;
+        --c-inverse-surface: 15 23 42;
+        --c-inverse-on-surface: 248 250 252;
+        --c-secondary: 71 85 105;
+        --c-on-secondary: 255 255 255;
+        --c-secondary-fixed: 226 232 240;
+        --c-secondary-fixed-dim: 71 85 105;
+        --c-on-secondary-fixed: 11 28 48;
+        --c-on-secondary-fixed-variant: 56 72 93;
+        --c-secondary-container: 226 232 240;
+        --c-on-secondary-container: 51 65 85;
+        --c-tertiary: 146 64 14;
+        --c-on-tertiary: 255 255 255;
+        --c-tertiary-container: 254 243 199;
+        --c-on-tertiary-container: 120 53 15;
+        --c-tertiary-fixed: 254 243 199;
+        --c-tertiary-fixed-dim: 146 64 14;
+        --c-on-tertiary-fixed: 39 25 1;
+        --c-on-tertiary-fixed-variant: 87 68 37;
+        --c-error: 220 38 38;
+        --c-on-error: 255 255 255;
+        --c-error-container: 254 226 226;
+        --c-on-error-container: 153 27 27;
+        --c-surface-tint: 59 79 116;
+        --c-surface-variant: 226 232 240;
+        /* Nav / Sidebar / Footer */
+        --c-nav-bg: 255 255 255;
+        --c-nav-border: 226 232 240;
+        --c-nav-brand: 15 23 42;
+        --c-nav-link: 71 85 105;
+        --c-nav-link-hover: 15 23 42;
+        --c-sidebar-bg: 255 255 255;
+        --c-footer-bg: 241 245 249;
+        --c-footer-text: 100 116 139;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       DARK MODE
+       ════════════════════════════════════════════════════════ */
+    .dark {
+        --c-background: 19 19 21;
+        --c-surface: 19 19 21;
+        --c-surface-dim: 19 19 21;
+        --c-surface-bright: 57 57 59;
+        --c-surface-container-lowest: 14 14 16;
+        --c-surface-container-low: 27 27 29;
+        --c-surface-container: 31 31 33;
+        --c-surface-container-high: 42 42 43;
+        --c-surface-container-highest: 53 52 54;
+        --c-on-surface: 228 226 228;
+        --c-on-surface-variant: 198 198 205;
+        --c-on-background: 228 226 228;
+        --c-outline: 144 144 151;
+        --c-outline-variant: 69 70 77;
+        --c-primary: 190 198 224;
+        --c-on-primary: 40 48 68;
+        --c-primary-container: 15 23 42;
+        --c-on-primary-container: 121 128 152;
+        --c-primary-fixed: 218 226 253;
+        --c-primary-fixed-dim: 190 198 224;
+        --c-on-primary-fixed: 19 27 46;
+        --c-on-primary-fixed-variant: 63 70 92;
+        --c-inverse-primary: 86 94 116;
+        --c-inverse-surface: 228 226 228;
+        --c-inverse-on-surface: 48 48 50;
+        --c-secondary: 183 200 225;
+        --c-on-secondary: 33 49 69;
+        --c-secondary-fixed: 211 228 254;
+        --c-secondary-fixed-dim: 183 200 225;
+        --c-on-secondary-fixed: 11 28 48;
+        --c-on-secondary-fixed-variant: 56 72 93;
+        --c-secondary-container: 58 74 95;
+        --c-on-secondary-container: 169 186 211;
+        --c-tertiary: 222 194 154;
+        --c-on-tertiary: 62 45 17;
+        --c-tertiary-container: 35 21 0;
+        --c-on-tertiary-container: 149 125 90;
+        --c-tertiary-fixed: 252 222 181;
+        --c-tertiary-fixed-dim: 222 194 154;
+        --c-on-tertiary-fixed: 39 25 1;
+        --c-on-tertiary-fixed-variant: 87 68 37;
+        --c-error: 255 180 171;
+        --c-on-error: 105 0 5;
+        --c-error-container: 147 0 10;
+        --c-on-error-container: 255 218 214;
+        --c-surface-tint: 190 198 224;
+        --c-surface-variant: 53 52 54;
+        /* Nav / Sidebar / Footer */
+        --c-nav-bg: 15 23 42;
+        --c-nav-border: 30 41 59;
+        --c-nav-brand: 248 250 252;
+        --c-nav-link: 148 163 184;
+        --c-nav-link-hover: 226 232 240;
+        --c-sidebar-bg: 15 23 42;
+        --c-footer-bg: 15 23 42;
+        --c-footer-text: 100 116 139;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection {
+        background-color: rgba(16, 185, 129, 0.3);
+        color: #10b981;
+    }
+}
+
+@layer components {
+    .material-symbols-outlined {
+        font-family: 'Material Symbols Outlined';
+        font-weight: normal; font-style: normal; font-size: 24px;
+        line-height: 1; letter-spacing: normal; text-transform: none;
+        display: inline-block; white-space: nowrap; word-wrap: normal; direction: ltr;
+        -webkit-font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased;
+    }
+    .ambient-shadow { box-shadow: 0 10px 40px -10px rgba(0,0,0,0.3); }
+    .ambient-shadow-sm { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+
+    .prose-devcraft h2 { @apply font-h2 text-h2 text-on-surface mt-8 mb-4; }
+    .prose-devcraft h3 { @apply font-h3 text-h3 text-on-surface mt-6 mb-3; }
+    .prose-devcraft p { @apply font-body-md text-body-md text-on-surface mb-4; }
+    .prose-devcraft code { @apply font-code-block bg-surface-container-high px-1.5 py-0.5 rounded text-sm text-primary; }
+    .prose-devcraft pre { @apply bg-surface-container-low rounded-lg border border-surface-variant overflow-hidden my-4; }
+    .prose-devcraft pre code { @apply bg-transparent px-0 py-0 block p-6 font-code-block text-code-block text-on-surface overflow-x-auto; }
+    .prose-devcraft blockquote { @apply bg-surface-container-low border border-surface-variant rounded-lg p-6 my-4 relative overflow-hidden; }
+    .prose-devcraft blockquote::before { content: ''; @apply absolute top-0 left-0 w-1 h-full bg-tertiary; }
+    .prose-devcraft ul, .prose-devcraft ol { @apply font-body-md text-body-md text-on-surface mb-4 pl-6; }
+    .prose-devcraft ul { @apply list-disc; }
+    .prose-devcraft ol { @apply list-decimal; }
+    .prose-devcraft li { @apply mb-2; }
+}

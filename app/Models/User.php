@@ -29,4 +29,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the articles written by this user.
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
